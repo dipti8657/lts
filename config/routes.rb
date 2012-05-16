@@ -1,9 +1,27 @@
 CuberootLts::Application.routes.draw do
-  get "home/index"
-
   devise_for :users
 
-  root :to => "home#index"
+  resources :users do
+    collection do
+      get 'search'
+    end
+  end
+
+  resources :leaves, :controller => "leaves" do
+    member do
+      get 'apply'
+    end
+  end
+
+root :to => "home#index"
+
+#  resources :users do
+#    resources :leaves do
+#      member do
+#        get 'applyleave'
+#      end
+#   end
+#  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -11,7 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120516043453) do
+ActiveRecord::Schema.define(:version => 20120516110755) do
+
+  create_table "leaves", :force => true do |t|
+    t.integer  "User_id_id"
+    t.datetime "Applied_on"
+    t.datetime "Start_Date"
+    t.datetime "End_Date"
+    t.integer  "No_of_Days"
+    t.string   "Current_Status"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "leaves", ["User_id_id"], :name => "index_leaves_on_User_id_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -26,6 +39,11 @@ ActiveRecord::Schema.define(:version => 20120516043453) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.datetime "Applied_on"
+    t.integer  "No_of_Days"
+    t.datetime "Start_Date"
+    t.datetime "End_Date"
+    t.string   "Current_Status"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
