@@ -18,11 +18,20 @@ class LeavesController < ApplicationController
   end
 
   def update
+    @leave = Leave.find(params[:id])
 
+    respond_to do |format|
+      if @post.update_attributes(params[:leave])
+        format.html { redirect_to leafe_path(@leave), notice: 'Leave was successfully updated.' }
+      else
+        format.html { render action: "edit" }
+      end
+    end
   end
 
   def index
     @leaves = Leave.all
+
   end
 
   def show
