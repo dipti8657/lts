@@ -1,0 +1,32 @@
+<h4>Apply For Leave</h4>
+
+<%= form_for :user, :url => { :action => "create" } do |f| %>
+
+  <div class="field">
+    <%= f.label :Applied_on %><br \>
+    <%= f.date_select :Applied_on %>
+
+  <div class="field">
+    <%= f.label :Start_Date %><br />
+    <%= f.date_select :Start_Date %>
+  </div>
+
+  <div class="field">
+    <%= f.label :End_Date %><br />
+    <%= f.date_select :End_Date %>
+  </div>
+
+  <div class="field">
+    <%= f.label :No_of_Days %><br />
+    <%= f.text_field :No_of_Days %>
+  </div>
+
+  <div class="field">
+    <%= f.label :Current_Status %><br />
+    <%= f.text_field :Current_Status %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

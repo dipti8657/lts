@@ -1,0 +1,30 @@
+
+<h4>Leaves Pending for Approval:-</h4>
+<table>
+  <tr>
+    <th>Applied_on</th>
+    <th>No_of_Days</th>
+    <th>Start_date</th>
+    <th>End_date</th>
+    <th>Current_status</th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @leaves.each do |leave| %>
+  <tr>
+    <td><%= leave.Applied_on %></td>
+    <td><%= leave.No_of_Days %></td>
+    <td><%= leave.Start_Date %></td>
+    <td><%= leave.End_Date %></td>
+    <td><%= leave.Current_Status %></td>
+ </tr>
+<% end %>
+
+<%= link_to "Apply for Leave", apply_leafe_path(:id)  %>
+
+</table>
+

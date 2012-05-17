@@ -1,2 +1,3 @@
-
-<%= link_to "My Leave Info", users_path %>
+<% if user_signed_in? %>
+  <%= link_to "My Leave Info", leaves_path %>
+<% end %>

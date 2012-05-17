@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  User_id: 
+  Applied_on: 2012-05-16 16:37:55
+  Start_Date: 2012-05-16 16:37:55
+  End_Date: 2012-05-16 16:37:55
+  No_of_Days: 1
+  Current_Status: MyString
+
+two:
+  User_id: 
+  Applied_on: 2012-05-16 16:37:55
+  Start_Date: 2012-05-16 16:37:55
+  End_Date: 2012-05-16 16:37:55
+  No_of_Days: 1
+  Current_Status: MyString
