@@ -31,37 +31,8 @@ class Leave < ActiveRecord::Base
         flag = false
       end
     end
-   #storedate = @try_holiday.first.date
-
-    #@weekday = Holiday.select(uGetBussinessDays(start_date, end_date))
-    #if @govt_holiday == 0 and @weekday == 0
-      #self.no_of_days = (end_date.to_datetime - start_date.to_datetime) + 1
-    #elsif @govt_holiday > 0 and @weekday == 0
-      #@holiday1 = (end_date.to_datetime - start_date.to_datetime) + 1
-      #self.no_of_days = @holiday1 - @govt_holiday
-    #elsif @govt_holiday > 0 and @weekday > 0
-      #@holiday2 = (end_date.to_datetime - start_date.to_datetime) + 1
-      #@holiday3 = @holiday2 - @govt_holiday
-      #self.no_of_days = @holiday3 - @weekday
-    #elsif @weekday > 0 and @govt_holiday == 0
-      #@holiday4 = (end_date.to_datetime - start_date.to_datetime) + 1
-      #self.no_of_days = @holiday4 - @weekday
-    #end
   end
 
-
-#  if !self.no_of_days.blank?
-#      n_digits = self.no_of_days.to_s.scan(/[0-9]/).size
-#      if n_digits > 2
-#        errors.add(" No of day's of leaves maximum two digit" )
-#      end
-#  end
-
-#  if !self.no_of_days.blank?
-#    if self.no_of_days.to_i < 1
-#      errors.add(" Please Enter valid no of day's" )
-#    end
-#  end
 
   def validate_leave_details(year)
     self # leave
