@@ -14,10 +14,8 @@ class Leave < ActiveRecord::Base
 
   def no_of_days_for_leave
     @govt_holiday = Holiday.where(["date between ? and ? ", start_date, end_date]).count
-   # logger.info "select uGetBussinessDays('#{start_date}','#{end_date}')"
 
     @try_holiday = Holiday.where(["date between ? and ? ", start_date, end_date])
-  # @try_holiday1 = Holiday.find_by_sql ("select  dayname '#{try_holiday}'").first.date
     business_days = connection.select_all("select uGetBussinessDays('#{start_date}','#{end_date}') as bd").first
     flag = true
     @try_holiday.each do |holiday|
