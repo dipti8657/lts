@@ -8,7 +8,7 @@ gem 'rails', '3.2.2'
 gem 'sqlite3'
 gem 'mysql2'
 gem 'devise'
-
+gem 'foreigner'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -20,7 +20,7 @@ group :assets do
   gem 'execjs'
   gem 'uglifier', '>= 1.0.3'
 end
-
+gem 'date_validator'
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
@@ -36,4 +36,4 @@ gem 'jquery-rails'
 # gem 'capistrano'
 
 # To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
+gem 'ruby-debug19', :require => 'ruby-debug'

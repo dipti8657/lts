@@ -1,0 +1,23 @@
+<h2>Admin</h2>
+<br />
+<h3>User Management</h3>
+<table border="5" cellspacing="1" cellpadding="4" bordercolor="black" border-style="solid">
+  <tr>
+    <th align="center" valign="middle">Employee</th>
+    <th align="center" valign="middle">Reporting Manager</th>
+  </tr>
+
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.email %></td>
+      <td><%= user.manager_id %></td>
+      <td><%= link_to 'Edit', edit_user_path(user.id) %></td>
+    </tr>
+    <% end %>
+
+</table>
+
+<%= link_to "Setup for Leaves", setups_path %><br />
+
+<%= link_to "Manage Holiday List", holidays_index_path %>
+

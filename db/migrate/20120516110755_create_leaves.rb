@@ -1,15 +1,15 @@
 class CreateLeaves < ActiveRecord::Migration
   def change
     create_table :leaves do |t|
-      t.references :User_id
-      t.datetime :Applied_on
-      t.datetime :Start_Date
-      t.datetime :End_Date
-      t.integer :No_of_Days
-      t.string :Current_Status
+      t.references :user,  :null => false, :foreign_key => true
+      t.datetime :applied_on
+      t.datetime :start_date
+      t.datetime :end_date
+      t.integer :no_of_days
+      t.string :current_status
 
       t.timestamps
     end
-    add_index :leaves, :User_id_id
+    add_index :leaves, :user_id
   end
 end

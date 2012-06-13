@@ -5,10 +5,11 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-  <h1>Cube Root Lts.</h1>
+  <h1>Cube Root Lts.</h1> <h1>------------------------------------------------------------------------------------------------</h1>
 </head>
 <body>
-  <div id="user_nav">
+<div id="user_nav">
+
   <% if user_signed_in? %>
     Signed in as <%= current_user.email %>. Not you?
     <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
@@ -17,8 +18,7 @@
   <% end %>
 </div>
 
-
- <p class="notice"><%= notice %></p>
+      <p class="notice"><%= notice %></p>
        <p class="alert"><%= alert %></p>
 
 <%= yield %>

@@ -1,0 +1,10 @@
+%h1 Enter Holiday HAML
+= form_for @holiday do |f|
+  .field
+    = f.label :Date
+    = f.date_select :date
+  .field
+    = f.label :Event
+    = f.text_field :event
+  .action
+    = f.submit

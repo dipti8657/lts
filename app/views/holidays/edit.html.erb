@@ -1,0 +1,21 @@
+<h2>Edit Holiday List</h2>
+
+<%= form_for @holiday, :url => { :action => "update" } do |f| %>
+   <div class="field">
+    <%= f.label :Date %><br />
+    <%= f.date_select :date %>
+  </div>
+
+  <div>
+    <%= f.label :Event %><br />
+    <%= f.text_field :event %>
+  </div>
+
+  <div>
+    <%= f.submit %>
+  </div>
+
+<% end %>
+
+<%= link_to 'Back', holidays_index_path %>
+

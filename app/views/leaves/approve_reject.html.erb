@@ -1,0 +1,67 @@
+<h2>Manager's DashBoard-Approve/Reject</h2>
+<h3>Action</h3>
+Employee Name: <%= @leave.user.email %>
+<br/>
+Number of Days: <%= @leave.no_of_days %>
+<br/>
+Start Date: <%= @leave.start_date %>
+<br/>
+End Date: <%= @leave.end_date %>
+
+
+<h2>Leaves History</h2>
+<table border="5" cellspacing="1" cellpadding="4" bordercolor="black" border-style="solid">
+  <tr>
+    <th align="center" valign="middle">Employee_id</th>
+    <th align="center" valign="middle">No_of_Days</th>
+    <th align="center" valign="middle">Start_date</th>
+    <th align="center" valign="middle">End_date</th>
+    <th align="center" valign="middle">Approved_on</th>
+    <th align="center" valign="middle">Approved_by</th>
+  </tr>
+
+  <% @leaves.each do |leave| %>
+    <tr>
+      <td><%= leave.user_id %></td>
+      <td><%= leave.no_of_days %></td>
+      <td><%= leave.start_date %></td>
+      <td><%= leave.end_date %></td>
+      <td><%= leave.updated_at %></td>
+      <td><%= current_user.email %></td>
+    </tr>
+  <% end %>
+</table>
+<br />
+
+<%= form_for @leave, :url => { :action => "update" } do |f| %>
+
+  <div class="actions">
+    <%= f.submit "Approve", :user_id => @leave %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Reject" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :rejection_reason %>
+    <%= f.text_field :rejection_reason %>
+  </div>
+
+<% end %>
+
+<br />
+
+<%= link_to 'Back', leaves_path %>
+
+
+
+
+
+
+
+
+
+
+
+

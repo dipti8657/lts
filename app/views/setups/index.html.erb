@@ -1,0 +1,26 @@
+<h3>Setup</h3>
+
+<table border="5" cellspacing="1" cellpadding="4" bordercolor="black" border-style="solid">
+  <tr>
+    <th align="center" valign="middle">Total Leaves</th>
+    <th align="center" valign="middle">Year</th>
+  </tr>
+
+  <% @setups.each do |setup| %>
+    <tr>
+      <td><%= setup.total_leaves %></td>
+      <td><%= setup.year %></td>
+      <td><%= link_to 'Edit', edit_setup_path(setup) %></td>
+      <td><%= link_to 'Destroy', setup, confirm: 'Are you sure?', method: :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p>
+  <%= link_to 'New Entry', new_setup_path %>
+</p>
+
+<p>
+  <%= link_to 'Back', user_management_user_path(current_user.id) %>
+</p>
+

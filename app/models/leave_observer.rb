@@ -1,6 +1,6 @@
 class LeaveObserver < ActiveRecord::Observer
-  def after_create(leave)
-    after_create :send_email_to_manager, :if => :manager_wants_emails?
+  def after_save(leave)
+  #   Notification.leave("dipti9979@gmail.com", "New leave was applied", leave).deliver
   end
 
 end

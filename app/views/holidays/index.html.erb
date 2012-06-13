@@ -1,0 +1,28 @@
+<h1>Holidays List in 2012</h1>
+<table border="5" cellspacing="1" cellpadding="4" bordercolor="black" border-style="solid">
+  <tr>
+    <th align="center" valign="middle">Date</th>
+    <th align="centre" valign="middle">Day</th>
+    <th align="center" valign="middle">Event</th>
+  </tr>
+
+  <% @holidays.each do |holiday| %>
+    <tr>
+      <td><%= holiday.date %></td>
+      <td><%= holiday.day %></td>
+      <td><%= holiday.event %></td>
+      <% if current_user.role == 'Admin' %>
+        <td><%= link_to 'Edit', edit_holiday_path(holiday) %></td>
+        <td><%= link_to 'Destroy', holiday, confirm: 'Are you sure?', method: :delete %></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
+
+
+<% if current_user.role == 'Admin' %>
+  <%= link_to 'Back', user_management_user_path(current_user.id) %><br /><br />
+  <%= link_to 'Insert Holiday', new_holiday_path %>
+<% else %>
+  <%= link_to 'Back', leaves_path %>
+<% end %>

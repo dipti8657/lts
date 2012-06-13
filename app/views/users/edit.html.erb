@@ -1,0 +1,24 @@
+<h2>Edit Employee's Manager</h2>
+
+<%= form_for @user, :url => { :action => "update" } do |f| %>
+   <div class="field">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= f.label :manager_id %><br />
+    <%= f.select("manager_id", User.all.collect {|p| [ p.id ] }, { :include_blank => true }) %>
+  </div>
+
+  <div class="action">
+    <%= f.submit "Change" %>
+  </div>
+
+<% end %>
+
+<br />
+
+<%= link_to 'Back', user_management_user_path(current_user.id) %>
+
+

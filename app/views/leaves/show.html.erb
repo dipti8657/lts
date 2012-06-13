@@ -2,26 +2,30 @@
 
 <p>
   <b>Applied_On</b>
-  <%= @leave.Applied_on %>
+  <%=l @leave.created_at %>
 </p>
 
 <p>
-  <b>Start_Date</b>
-  <%= @leave.Start_Date %>
+  <b>start_date</b>
+  <%=l @leave.start_date %>
 </p>
 
 <p>
-  <b>End_Date</b>
-  <%= @leave.End_Date %>
+  <b>end_date</b>
+  <%=l @leave.end_date %>
 </p>
 
 <p>
-  <b>No_of_Days</b>
-  <%= @leave.No_of_Days %>
+  <b>no_of_days</b>
+  <%= @leave.no_of_days %>
 </p>
 
 <p>
-  <b>Current_Status</b>
-  <%= @leave.Current_Status %>
+  <b>current_status</b>
+  <%= @leave.current_status %>
+</p>
+
+<p>
+  <%= link_to 'Back', leaves_path %>
 </p>
 

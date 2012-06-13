@@ -1,0 +1,21 @@
+<h2>Edit Setup</h2>
+
+<%= form_for @setup, :url => { :action => "update" } do |f| %>
+   <div class="field">
+    <%= f.label :Total_leaves %><br />
+    <%= f.text_field :total_leaves %>
+  </div>
+
+  <div>
+    <%= f.label :Year %><br />
+    <%= f.text_field :year %>
+  </div>
+
+  <div>
+    <%= f.submit %>
+  </div>
+
+<% end %>
+
+<%= link_to 'Back', setups_path %>
+

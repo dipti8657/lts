@@ -1,0 +1,13 @@
+<h6>Total Leaves:-
+  <% @setups.each do |setup| %>
+    <%= setup.total_leaves %>
+  <% end %>
+</h6>
+<h6>Leaves Taken:-
+  <%= @leaves_taken %></h6>
+
+<h6>Leaves Balance:-</h6>
+<% @setups.each do |setup| %>
+    <%= setup.total_leaves - @leaves_taken %>
+<% end %></h6>
+

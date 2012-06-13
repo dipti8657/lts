@@ -1,0 +1,42 @@
+<h4>Approved Leaves:-</h4>
+<table border="5" cellspacing="1" cellpadding="4" bordercolor="black">
+  <tr>
+    <th>Applied_on</th>
+    <th>No_of_Days</th>
+    <th>Start_date</th>
+    <th>End_date</th>
+    <th>Approved_on</th>
+    <th>Approved_by</th>
+    <% if current_user.role == 'Manager' %>
+      <th>Email</th>
+    <% end %>
+   </tr>
+
+   <% @leaves.each do |leave| %>
+     <% if leave.current_status == "Approved" %>
+        <tr>
+          <td><%= leave.created_at.strftime("%d-%m-%Y") %></td>
+          <td><%= leave.no_of_days %></td>
+          <td><%= leave.start_date.strftime("%d-%m-%Y") %></td>
+          <td><%= leave.end_date.strftime("%d-%m-%Y") %></td>
+          <td><%= leave.updated_at.strftime("%d-%m-%Y") %></td>
+          <td><% @users.each do |user|%>
+                <%= leave.user.manager_id  %>
+              <% end %>
+          </td>
+            <% if current_user.role == 'Manager'%>
+              <td><%= leave.user.email %></td>
+            <% end %>
+      </tr>
+      <% end %>
+    <% end %>
+</table>
+
+<%= link_to "Apply for Leave", new_leave_path %><br />
+<p>
+  <%= link_to "Holiday List", holidays_index_path %>
+</p>
+
+
+
+

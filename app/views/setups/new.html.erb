@@ -1,0 +1,21 @@
+<%= form_for @setup, :url => { :action => "create" }   do |f| %>
+  <div class="field">
+    <%= f.label :total_leaves %>
+    <%= f.text_field :total_leaves %>
+  </div>
+
+  <div class="field">
+    <%= f.label :year %>
+    <%= f.text_field :year %>
+  </div>
+
+  <div class="action">
+    <%= f.submit "Save" %>
+  </div>
+
+<% end %>
+
+<p>
+  <%= link_to 'Back', setups_path(current_user.id) %>
+</p>
+

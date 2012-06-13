@@ -6,6 +6,12 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  validates :email,
+            :presence => true,
+            :uniqueness => true,
+            :format => { :with => /^[-a-z0-9_+\.]+\@(cuberoot\.in)$/i, :message => "should be a cuberoot.in email" }
+
+
+   # Setup accessible (or protected) attributes for your model
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :manager_id
 end

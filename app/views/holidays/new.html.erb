@@ -1,0 +1,18 @@
+<h1>Enter Holiday</h1>
+<%= form_for @holiday do |f| %>
+  <div class = "field">
+    <%= f.label :Date %>
+    <%= f.date_select :date %>
+  </div>
+
+  <div class = "field">
+    <%= f.label :Event %>
+    <%= f.text_field :event %>
+  </div>
+
+  <div class = "action">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+

@@ -11,24 +11,42 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120517104231) do
+ActiveRecord::Schema.define(:version => 20120608101009) do
 
-  create_table "leaves", :force => true do |t|
-    t.integer  "User_id_id"
-    t.datetime "Applied_on"
-    t.datetime "Start_Date"
-    t.datetime "End_Date"
-    t.integer  "No_of_Days"
-    t.string   "Current_Status"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
-    t.string   "Reason"
+  create_table "holidays", :force => true do |t|
+    t.date     "date"
+    t.string   "day",        :limit => 20
+    t.string   "event"
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
   end
 
-  add_index "leaves", ["User_id_id"], :name => "index_leaves_on_User_id_id"
+  create_table "leaves", :force => true do |t|
+    t.integer  "user_id"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.integer  "no_of_days"
+    t.string   "current_status"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.string   "reason"
+    t.datetime "approved_on"
+    t.string   "rejection_reason"
+    t.integer  "approved_by"
+  end
+
+  add_index "leaves", ["user_id"], :name => "index_leaves_on_user_id"
+
+  create_table "setups", :force => true do |t|
+    t.integer  "total_leaves"
+    t.integer  "year"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
+    t.integer  "manager_id"
     t.string   "encrypted_password",     :default => "", :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -40,9 +58,14 @@ ActiveRecord::Schema.define(:version => 20120517104231) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.string   "role"
+    t.string   "name"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["manager_id"], :name => "manager_id"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  add_foreign_key "users", "users", :name => "users_ibfk_1", :column => "manager_id"
 
 end
