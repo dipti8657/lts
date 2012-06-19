@@ -7,7 +7,7 @@
     <th>End_date</th>
     <th>Approved_on</th>
     <th>Approved_by</th>
-    <% if current_user.role == 'Manager' %>
+    <% if current_user.role == 'manager' %>
       <th>Email</th>
     <% end %>
    </tr>
@@ -24,7 +24,7 @@
                 <%= leave.user.manager_id  %>
               <% end %>
           </td>
-            <% if current_user.role == 'Manager'%>
+            <% if current_user.role == 'manager'%>
               <td><%= leave.user.email %></td>
             <% end %>
       </tr>

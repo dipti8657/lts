@@ -1,9 +1,9 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   def after_sign_in_path_for(leaves)
-    if current_user.role == 'Admin'
+    if current_user.role == 'admin'
       user_management_user_path(current_user.id)
-    elsif current_user.role == 'Employee' or current_user.role == 'Manager'
+    elsif current_user.role == 'employee' or current_user.role == 'manager'
       leaves_path
     end
   end

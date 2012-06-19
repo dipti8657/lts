@@ -11,18 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120608101009) do
+ActiveRecord::Schema.define(:version => 20120619141616) do
 
   create_table "holidays", :force => true do |t|
     t.date     "date"
-    t.string   "day",        :limit => 20
     t.string   "event"
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "leaves", :force => true do |t|
-    t.integer  "user_id"
+    t.integer  "user_id",          :null => false
     t.datetime "start_date"
     t.datetime "end_date"
     t.integer  "no_of_days"
@@ -45,9 +44,9 @@ ActiveRecord::Schema.define(:version => 20120608101009) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                  :default => "", :null => false
+    t.string   "email",                  :default => "",         :null => false
     t.integer  "manager_id"
-    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "encrypted_password",     :default => "",         :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -56,9 +55,9 @@ ActiveRecord::Schema.define(:version => 20120608101009) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
-    t.string   "role"
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
+    t.string   "role",                   :default => "employee"
     t.string   "name"
   end
 
@@ -67,5 +66,7 @@ ActiveRecord::Schema.define(:version => 20120608101009) do
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
   add_foreign_key "users", "users", :name => "users_ibfk_1", :column => "manager_id"
+  add_foreign_key "users", "users", :name => "users_ibfk_2", :column => "manager_id"
+  add_foreign_key "users", "users", :name => "users_ibfk_3", :column => "manager_id"
 
 end

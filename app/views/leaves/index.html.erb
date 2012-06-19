@@ -8,7 +8,7 @@
     <th align="center" valign="middle">Start_date</th>
     <th align="center" valign="middle">End_date</th>
     <th align="center" valign="middle">Current_status</th>
-    <% if current_user.role == 'Manager'%>
+    <% if current_user.role == 'manager'%>
       <th>Employee</th>
       <th>Action</th>
     <% end %>
@@ -43,12 +43,12 @@
     <% @leaves.each do |leave| %>
     <% if leave.current_status == "Pending" %>
       <tr>
-        <td><%= leave.created_at.strftime("%d-%m-%Y") %></td>
+        <td><%= leave.created_at %></td>
         <td><%= leave.no_of_days %></td>
         <td><%= leave.start_date.strftime("%d-%m-%Y") %></td>
         <td><%= leave.end_date.strftime("%d-%m-%Y") %></td>
         <td><%= leave.current_status %></td>
-        <% if current_user.role == 'Manager'%>
+        <% if current_user.role == 'manager'%>
           <td><%= leave.user.email %></td>
           <td>
             <%= link_to 'Approve/Reject', approve_reject_leave_path(:id => leave.id, :user_id => leave.user.id)%>

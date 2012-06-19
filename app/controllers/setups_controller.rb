@@ -1,7 +1,7 @@
 class SetupsController < ApplicationController
 
   def index
-    if current_user.role == 'Admin' or current_user.role == 'Manager'
+    if current_user.role == 'admin' or current_user.role == 'manager'
       @setups = Setup.all
     else
       @setups = Setup.find(:all, :conditions =>['user_id =?', current_user.id])

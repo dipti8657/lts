@@ -30,6 +30,7 @@ class LeavesController < ApplicationController
     if params[:commit] == "Approve"
         @leave.current_status = "Approved"
         @leave.approved_by = current_user.id
+        @leave.approved_on = Time.now
     end
 
     if params[:commit] == "Reject"
@@ -68,7 +69,7 @@ class LeavesController < ApplicationController
   end
 
   def index
-    if current_user.role == 'Admin' or current_user.role == 'Manager'
+    if current_user.role == 'admin' or current_user.role == 'manager'
       @leaves = Leave.find(:all)
     else
       @leaves = Leave.find(:all, :conditions =>['user_id =?', current_user.id])
