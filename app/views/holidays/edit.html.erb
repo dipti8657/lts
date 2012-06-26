@@ -6,16 +6,32 @@
     <%= f.date_select :date %>
   </div>
 
-  <div>
+  <div class="field">
     <%= f.label :Event %><br />
     <%= f.text_field :event %>
   </div>
 
-  <div>
+  <div class="action">
     <%= f.submit %>
   </div>
 
 <% end %>
 
 <%= link_to 'Back', holidays_index_path %>
+<!--
+%h2 Edit Holiday List
+= form_for @holiday, :url => { :action => "update" } do |f|
+  .field
+    = f.label :Date
+    %br/
+    = f.date_select :date
+  .field
+    = f.label :Event
+    %br/
+    = f.text_field :event
+  .action
+    = f.submit
 
+= link_to 'Back', holidays_index_path
+
+-- >

@@ -11,21 +11,24 @@ class UsersController < ApplicationController
   end
 
   def update
+    @setup = Setup.find(:all, :conditions => ['year = ?', "#{Time.now.year}"])
+    #Rails.logger.info(@user.errors.messages.inspect)
     @user = User.find(params[:id])
     if params[:commit] == "Change"
       @user.manager_id = params[:manager_id]
-    end
-    if params[:commit] == "Save"
-      @user.manager_id = params[:manager_id]
+      @user.joining_date = params[:joining_date]
+      @user.role = params[:role]
     end
 
-    respond_to do |format|
-      if @user.update_attributes(params[:user])
-        format.html { redirect_to user_path(@user), notice: 'Manager has changed' }
-      else
-        format.html { render action: "edit" }
-      end
+    #respond_to do |format|
+    if @user.update_attributes(params[:user])
+      redirect_to @user, :notice => 'Employees info has changed'
+    else
+      Rails.logger.info(@user.errors.messages.inspect)
+      render :edit
     end
+    #end
+    #@setup = Setup.find(:all, :conditions => ['year = ?', "#{Time.now.year}"])
   end
 
   def show

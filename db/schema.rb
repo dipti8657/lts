@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120619141616) do
+ActiveRecord::Schema.define(:version => 20120621094630) do
 
   create_table "holidays", :force => true do |t|
     t.date     "date"
@@ -59,6 +59,8 @@ ActiveRecord::Schema.define(:version => 20120619141616) do
     t.datetime "updated_at",                                     :null => false
     t.string   "role",                   :default => "employee"
     t.string   "name"
+    t.float    "total_leaves"
+    t.date     "joining_date"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

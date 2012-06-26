@@ -37,6 +37,43 @@
   <%= link_to "Holiday List", holidays_index_path %>
 </p>
 
+<!--
+%h4 Approved Leaves
+%table{:border="5", :cellspacing="1", :cellpadding="4", :bordercolor="black"}
+  %tr
+    %th(align="center" valign="middle") Applied_on
+    %th(align="center" valign="middle") No_of_days
+    %th(align="center" valign="middle") Start_date
+    %th(align="center" valign="middle") End_Date
+    %th(align="center" valign="middle") Approved_on
+    %th(align="center" valign="middle') Approved_by
+    - if current_user.role == 'manager'
+      %th Email
+
+  - @leaves.each do |leave|
+    - if leave.current_status == "Approved"
+      %tr
+        %td= leave.created_at.strftime("%d-%m-%Y")
+        %td= leave.no_of_days
+        %td= leave.start_date
+        %td= leave.end_date
+        %td= leave.updated_at.strftime("%d-%m-%Y")
+        %td
+          - @users.each do |user|
+            = leave.user.manager_id
+        - if current_user.role == 'manager'
+          %td= leave.user.email
+
+= link_to "Apply for Leave", new_leave_path
+%br/
+
+%p
+  = link_to "Holidays List", Holidays_index_path
+
+-->
+
+
+
 
 
 

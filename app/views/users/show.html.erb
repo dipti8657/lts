@@ -3,5 +3,17 @@
   <%= @user.manager_id %>
 </p>
 
+<p>
+  <b>Joining Date</b>
+  <%= @user.joining_date %>
+</p>
+
+<p>
+  <b>Total Leaves</b>
+  <%= @user.total_leaves %>
+</p>
+
+
+
 <%= link_to 'Back', user_management_user_path(current_user.id) %>
 

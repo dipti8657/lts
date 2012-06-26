@@ -2,27 +2,62 @@
 <html>
 <head>
   <title>CuberootLts</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag    "bootstrap.min", "lts", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   <h1>Cube Root Lts.</h1>
   <hr />
 </head>
 <body>
-<div id="user_nav">
 
-  <% if user_signed_in? %>
-    Signed in as <%= current_user.email %>. Not you?
-    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-  <% else %>
-    <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
-  <% end %>
-</div>
+<div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">Cube Root LTS</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#holidays_index_path">Holiday List</a></li>
+            </ul>
+            </div><!--/.nav-collapse -->
+            <div id="user_nav" class="pull-right">
 
+            <% if user_signed_in? %>
+              Signed in as <%= current_user.email %>. Not you?
+              <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+            <% else %>
+              <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
       <p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
+      <p class="alert"><%= alert %></p>
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="span3">
+          <%= yield :sidebar %>
+        </div>
+        <div class="span9">
+          <%= yield %>
+       </div>
+      </div>
 
-<%= yield %>
+      <hr>
+
+      <footer>
+        <p>&copy; Company 2012</p>
+      </footer>
+
+    </div> <!-- /container -->
 
 </body>
 </html>

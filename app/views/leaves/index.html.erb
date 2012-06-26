@@ -1,4 +1,7 @@
-<%= render '/setups/leave_balance' %>
+<%= content_for :sidebar do %>
+  <%= render '/setups/leave_balance' %>
+<% end %>
+
 <h2>Employee's DashBoard</h2>
 <h4>Leaves Pending for Approval:-</h4>
 <table border="5" cellspacing="1" cellpadding="4" bordercolor="black" border-style="solid">
@@ -20,7 +23,7 @@
     %th(align="center" valign="middle") Applied_on
     %th(align="center" valign="middle") No_of_Days
     - if current_user.role == "Manager"
-      %th Employe%table(border="5" cellspacing="1" cellpadding="4" bordercolor="black" border-style="solid")
+      %th Employee%table(border="5" cellspacing="1" cellpadding="4" bordercolor="black" border-style="solid")
   %tr#heading.bold.italics
     %th(align="center" valign="middle") Applied_on
     %th(align="center" valign="middle") No_of_Days
@@ -43,7 +46,7 @@
     <% @leaves.each do |leave| %>
     <% if leave.current_status == "Pending" %>
       <tr>
-        <td><%= leave.created_at %></td>
+        <td><%= leave.created_at.strftime("%d-%m-%Y") %></td>
         <td><%= leave.no_of_days %></td>
         <td><%= leave.start_date.strftime("%d-%m-%Y") %></td>
         <td><%= leave.end_date.strftime("%d-%m-%Y") %></td>
@@ -60,3 +63,38 @@
 </table>
 
 <%= render 'form' %>
+
+<!--
+= render '/setups/leave_balance'
+%h2 Employee's DashBoard
+%h4 Leaves Pending for Approval:-
+%table{:border => "5", "border-style" => "solid", :bordercolor => "black", :cellpadding => "4", :cellspacing => "1"}
+  %tr
+    %th{:align => "center", :valign => "middle"} Applied_on
+    %th{:align => "center", :valign => "middle"} No_of_Days
+    %th{:align => "center", :valign => "middle"} Start_date
+    %th{:align => "center", :valign => "middle"} End_date
+    %th{:align => "center", valign => "middle"} Current_status
+    - if current_user.role == "manager"
+      %th Employee
+      %th Action
+
+   - @leaves.each do |leave|
+    - if leave.current_status == "Pending"
+      %tr
+        %td= leave.created_at.strftime("%d-%m-%Y")
+        %td= leave.no_of_days
+        %td= leave.start_date
+        %td= leave.end_date
+        %td= leave.current_status
+        - if current_user.role == 'manager'
+          %td= leave.user.email
+          %td= link_to 'Approve/Reject', approve_reject_leave_path(:id => leave.id, :user_id => leave.user.id)
+= render 'form'
+-->
+
+
+
+
+
+

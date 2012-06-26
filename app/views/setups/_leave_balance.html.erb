@@ -6,7 +6,7 @@
 <h6>Leaves Taken:-
   <%= @leaves_taken %></h6>
 
-<h6>Leaves Balance:-</h6>
+<h6>Leaves Balance:-
 <% @setups.each do |setup| %>
     <%= setup.total_leaves - @leaves_taken %>
 <% end %></h6>

@@ -1,17 +1,17 @@
 <h4>Apply For Leave:-</h4>
 <%= form_for @leave, :url => { :action => "create" } do |f| %>
 
-  <div class="field">
-    <%= f.label :start_date, :id =>"strDate" %><br />
+  <div class="field-grey">
+    <%= f.label :start_date %><br />
     <%= f.date_select :start_date, :order => [:month, :day, :year] %>
   </div>
 
-  <div class="field">
-    <%= f.label :end_date, :id =>"endDate" %><br />
+  <div class="field-eDate">
+    <%= f.label :end_date %><br />
     <%= f.date_select :end_date, :order => [:month, :day, :year]  %>
   </div>
 
-  <div class="field">
+  <div class="field-reason">
     <%= f.label :reason %><br />
     <%= f.text_area :reason %>
   </div>
@@ -34,3 +34,19 @@
 
 <%= link_to 'Back', leaves_path %>
 
+%h4 Apply For Leave:-
+= form_for @leave, :url => { :action => "create" } do |f|
+  .field
+    = f.label :start_date
+    %br/
+    = f.date_select :start_date, :order => [:month, :day, :year]
+  .field
+    = f.label :end_date
+    %br/
+    = f.date_select :end_date, :order => [:month, :day, :year]
+  .field
+    = f.label :reason
+    %br/
+    = f.text_area :reason
+  .actions
+    = 
