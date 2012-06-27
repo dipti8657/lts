@@ -2,8 +2,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   before_save :totalleaves
-  before_save :default_value_for_role
-  after_create :default_value_for_joining_date
+
   has_many :leaves, :dependent => :destroy
 # validates_associated :leaves
   devise :database_authenticatable, :registerable,
@@ -28,14 +27,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  def default_value_for_role
-    self.role = "employee"
-  end
-
-  def default_value_for_joining_date
-    self.joining_date = "2012-01-01"
-  end
-
+ 
 end
 
 

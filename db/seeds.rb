@@ -5,3 +5,11 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+#
+
+admin = User.create!(:email => 'admin@cuberoot.in', 
+                     :password => 'secret',
+                     :password_confirmation => 'secret',
+                     :role => 'admin',
+                     :manager_id => 1)
+

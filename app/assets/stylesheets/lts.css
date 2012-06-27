@@ -2,22 +2,38 @@ body{
   background-color: whitesmoke;
 }
 
+h1{
+  font-size:250%;
+}
+
 h2 {
+  font-size:200%;
   color: #aaaaaa;
 }
 
 h4 {
+  font-size:100%
   font-style: italic;
 }
 
 .field-grey {
   margin:auto;
-  background-color: darksalmon;
+  background-color: blanchedalmond;
   font-size: 500%;
+}
+
+.field-eDate{
+  background-color: blanchedalmond;
 }
 
 .field-reason{
   background-color: blanchedalmond;
+}
+
+.actions{
+  margin: auto;
+  right: 25px;
+  background-color: red;
 }
 
 table{
@@ -26,6 +42,7 @@ table{
   text-align: center;
   border-collapse: separate;
   height: 100px;
+  border-width: medium;
 }
 
 th{
@@ -38,4 +55,9 @@ th{
 
 td{
   border: 1px solid black;
+}
+
+caption{
+  font-weight: bolder;
+  font-size: 150%;
 }
