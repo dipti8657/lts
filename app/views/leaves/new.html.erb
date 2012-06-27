@@ -5,7 +5,7 @@
     <%= f.label :start_date %><br />
     <%= f.date_select :start_date, :order => [:month, :day, :year] %>
   </div>
-
+  <hr />
   <div class="field-eDate">
     <%= f.label :end_date %><br />
     <%= f.date_select :end_date, :order => [:month, :day, :year]  %>
@@ -13,7 +13,7 @@
 
   <div class="field-reason">
     <%= f.label :reason %><br />
-    <%= f.text_area :reason %>
+    <%= f.text_area :reason, :size => "30*10" %>
   </div>
 
  <!-- <% if current_user.role == 'Admin' or current_user.role == 'Manager' %>
@@ -34,6 +34,7 @@
 
 <%= link_to 'Back', leaves_path %>
 
+<!--
 %h4 Apply For Leave:-
 = form_for @leave, :url => { :action => "create" } do |f|
   .field
@@ -49,4 +50,5 @@
     %br/
     = f.text_area :reason
   .actions
-    = 
+  = 
+-->

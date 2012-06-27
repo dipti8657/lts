@@ -1,3 +1,6 @@
+body{
+  background-color: whitesmoke;
+}
 
 h2 {
   color: #aaaaaa;
@@ -9,7 +12,7 @@ h4 {
 
 .field-grey {
   margin:auto;
-  background-color: blanchedalmond;
+  background-color: darksalmon;
   font-size: 500%;
 }
 
@@ -17,5 +20,22 @@ h4 {
   background-color: blanchedalmond;
 }
 
+table{
+  border: 1px solid black;
+  width: 100%;
+  text-align: center;
+  border-collapse: separate;
+  height: 100px;
+}
 
+th{
+  border: 1px solid black;
+  border-collapse: separate;
+  text-align: center;
+  font-weight: bold;
+  background-color: #A7C942
+}
 
+td{
+  border: 1px solid black;
+}

@@ -3,14 +3,14 @@
 <% end %>
 
 <h2>Employee's DashBoard</h2>
-<h4>Leaves Pending for Approval:-</h4>
-<table border="5" cellspacing="1" cellpadding="4" bordercolor="black" border-style="solid">
-  <tr id="heading" class="bold italics">
-    <th align="center" valign="middle">Applied_on</th>
-    <th align="center" valign="middle">No_of_Days</th>
-    <th align="center" valign="middle">Start_date</th>
-    <th align="center" valign="middle">End_date</th>
-    <th align="center" valign="middle">Current_status</th>
+<table>
+  <caption>Table for Leaves Pending for Approval</caption>
+  <tr>
+    <th>Applied_on</th>
+    <th>No_of_Days</th>
+    <th>Start_date</th>
+    <th>End_date</th>
+    <th>Current_status</th>
     <% if current_user.role == 'manager'%>
       <th>Employee</th>
       <th>Action</th>
