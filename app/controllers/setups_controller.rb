@@ -1,11 +1,11 @@
 class SetupsController < ApplicationController
 
   def index
-    if current_user.role == 'admin' or current_user.role == 'manager'
+#   if current_user.role == 'admin' or current_user.role == 'manager'
       @setups = Setup.all
-    else
-      @setups = Setup.find(:all, :conditions =>['user_id =?', current_user.id])
-    end
+#   else
+#     @setups = Setup.find(:all, :conditions =>['user_id =?', current_user.id])
+#   end
     #@remain_leaves = setups.get_remaining_leave
   end
 

@@ -1,7 +1,7 @@
 <h4>Apply For Leave:-</h4>
 <%= form_for @leave, :url => { :action => "create" } do |f| %>
 
-  <div class="field-grey">
+  <div class="field-sDate">
     <%= f.label :start_date %><br />
     <%= f.date_select :start_date, :order => [:month, :day, :year] %>
   </div>

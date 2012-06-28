@@ -10,14 +10,14 @@ End Date: <%= @leave.end_date %>
 
 
 <h2>Leaves History</h2>
-<table border="5" cellspacing="1" cellpadding="4" bordercolor="black" border-style="solid">
+<table>
   <tr>
-    <th align="center" valign="middle">Employee_id</th>
-    <th align="center" valign="middle">No_of_Days</th>
-    <th align="center" valign="middle">Start_date</th>
-    <th align="center" valign="middle">End_date</th>
-    <th align="center" valign="middle">Approved_on</th>
-    <th align="center" valign="middle">Approved_by</th>
+    <th>Employee_id</th>
+    <th>No_of_Days</th>
+    <th>Start_date</th>
+    <th>End_date</th>
+    <th>Approved_on</th>
+    <th>Approved_by</th>
   </tr>
 
   <% @leaves.each do |leave| %>
