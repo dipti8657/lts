@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120627072753) do
+ActiveRecord::Schema.define(:version => 20120628044020) do
 
   create_table "holidays", :force => true do |t|
     t.date     "date"
@@ -45,7 +45,6 @@ ActiveRecord::Schema.define(:version => 20120627072753) do
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "",           :null => false
-    t.integer  "manager_id"
     t.string   "encrypted_password",     :default => "",           :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -61,14 +60,10 @@ ActiveRecord::Schema.define(:version => 20120627072753) do
     t.string   "name"
     t.float    "total_leaves"
     t.date     "joining_date",           :default => '2012-01-01'
+    t.integer  "manager_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
-  add_index "users", ["manager_id"], :name => "manager_id"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
-
-  add_foreign_key "users", "users", :name => "users_ibfk_1", :column => "manager_id"
-  add_foreign_key "users", "users", :name => "users_ibfk_2", :column => "manager_id"
-  add_foreign_key "users", "users", :name => "users_ibfk_3", :column => "manager_id"
 
 end
