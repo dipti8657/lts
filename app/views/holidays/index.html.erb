@@ -2,14 +2,12 @@
 <table>
   <tr>
     <th>Date</th>
-    <th>Day</th>
     <th>Event</th>
   </tr>
 
   <% @holidays.each do |holiday| %>
     <tr>
       <td><%= holiday.date %></td>
-      <td><%= holiday.day %></td>
       <td><%= holiday.event %></td>
       <% if current_user.role == 'admin' %>
         <td><%= link_to 'Edit', edit_holiday_path(holiday) %></td>

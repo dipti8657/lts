@@ -1,6 +1,9 @@
 <h2>Edit Holiday List</h2>
 
-<%= form_for @holiday, :url => { :action => "update" } do |f| %>
+<%= form_for @holiday do |f| %>
+  <% @holiday.errors.full_messages.each do |msg| %>
+    <p><%= msg %></p>
+  <% end %>
    <div class="field">
     <%= f.label :Date %><br />
     <%= f.date_select :date %>

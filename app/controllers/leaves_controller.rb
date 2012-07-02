@@ -69,8 +69,16 @@ class LeavesController < ApplicationController
   end
 
   def index
-    if current_user.role == 'admin' or current_user.role == 'manager'
-      @leaves = Leave.find(:all)
+    if current_user.role == 'manager'
+      @leaves = current_user.leaves
+      
+      #@subordinates = User.where(:manager_id => current_user.id)
+      #@subordinates.each do |subordinate|
+       # @subordinates_leaves = Leave.find(:all, :conditions => ['user_id => ?', subordinate.user_id])
+      #3end
+
+       # subordinate.leaves
+      #end
     else
       @leaves = Leave.find(:all, :conditions =>['user_id =?', current_user.id])
     end
@@ -96,4 +104,7 @@ class LeavesController < ApplicationController
     end
   end
 
+  def change_year
+
+  end
 end

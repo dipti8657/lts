@@ -50,8 +50,7 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
-    foreigner (1.1.6)
-      activerecord (>= 3.0.0)
+    haml (3.1.6)
     hike (1.2.1)
     i18n (0.6.0)
     journey (1.0.4)
@@ -138,7 +137,7 @@ DEPENDENCIES
   date_validator
   devise
   execjs
-  foreigner
+  haml
   jquery-rails
   mysql2
   rails (= 3.2.2)

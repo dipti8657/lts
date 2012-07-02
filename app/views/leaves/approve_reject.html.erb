@@ -67,14 +67,14 @@ End_date:- #{@leave.end_date}
 %br/
 
 %h3 Leaves_History
-%table{:border => "5", :bordercolor => "black", :cellspacing => "1", :cellpadding => "4"}
+%table
   %tr
-    %th{:align => "center", :valign => "middle"} Applied_on
-    %th{:align => "center", :valign => "middle"} No_of_Days
-    %th{:align => "center", :valign => "middle"} Start_date
-    %th{:align => "center", :valign => "middle"} End_date
-    %th{:align => "center", :valign => "middle"} Approved_on
-    %th(:align => "center", :valign => "middle"} Approved_by
+    %th Applied_on
+    %th No_of_Days
+    %th Start_date
+    %th End_date
+    %th Approved_on
+    %th Approved_by
   - @leaves.each do |leave|
     %tr
       %td= leave.user_id

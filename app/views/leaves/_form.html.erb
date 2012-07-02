@@ -2,7 +2,7 @@
 <hr />
 <br />
 <table>
-  <caption>Table for Approved Leaves</caption>
+  <caption>Approved Leaves of <%= current_user.email %></caption>
   <tr>
     <th>Applied_on</th>
     <th>No_of_Days</th>
@@ -10,9 +10,9 @@
     <th>End_date</th>
     <th>Approved_on</th>
     <th>Approved_by</th>
-    <% if current_user.role == 'manager' %>
+    <!--<% if current_user.role == 'manager' %>
       <th>Email</th>
-    <% end %>
+    <% end %>-->
    </tr>
 
    <% @leaves.each do |leave| %>
@@ -24,12 +24,12 @@
           <td><%= leave.end_date.strftime("%d-%m-%Y") %></td>
           <td><%= leave.updated_at.strftime("%d-%m-%Y") %></td>
           <td><% @users.each do |user|%>
-                <%= leave.user.manager_id  %>
+                <%= leave.user.manager.email %>
               <% end %>
           </td>
-            <% if current_user.role == 'manager'%>
-              <td><%= leave.user.email %></td>
-            <% end %>
+            <!--<% if current_user.role == 'manager'%>
+            <td><%= leave.user.email %></td>-->
+          <% end %>-->
       </tr>
       <% end %>
     <% end %>
@@ -38,7 +38,7 @@
 <br />
 <hr />
 <br />
-<%= link_to "Apply for Leave", new_leave_path %>
+<%= link_to "Apply for Leave", new_leave_path, :class => 'btn' %>
 <br />
 <br />
 
@@ -47,14 +47,14 @@
 
 <!--
 %h4 Approved Leaves
-%table{:border="5", :cellspacing="1", :cellpadding="4", :bordercolor="black"}
+%table
   %tr
-    %th(align="center" valign="middle") Applied_on
-    %th(align="center" valign="middle") No_of_days
-    %th(align="center" valign="middle") Start_date
-    %th(align="center" valign="middle") End_Date
-    %th(align="center" valign="middle") Approved_on
-    %th(align="center" valign="middle') Approved_by
+    %th Applied_on
+    %th No_of_days
+    %th Start_date
+    %th End_Date
+    %th Approved_on
+    %th Approved_by
     - if current_user.role == 'manager'
       %th Email
 

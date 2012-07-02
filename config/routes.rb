@@ -5,7 +5,7 @@ CuberootLts::Application.routes.draw do
 
   resources :leaves do
     member do
-      get 'approve_reject'
+      get 'approve_reject', 'change_year'
     end
   end
 

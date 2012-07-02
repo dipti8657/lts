@@ -1,5 +1,8 @@
-%h1 Enter Holiday HAML
+%h1 Enter Holiday HAML1
 = form_for @holiday do |f|
+  -@holiday.errors.full_messages.each do |msg|
+    %p= msg
+
   .field
     = f.label :Date
     = f.date_select :date

@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  belongs_to :manager, :class_name => "User", :foreign_key => 'manager_id'
+  
   validates :email,
             :presence => true,
             :uniqueness => true,
@@ -16,6 +18,9 @@ class User < ActiveRecord::Base
 
    # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :manager_id, :joining_date, :role
+
+  scope :managers, where(:role => 'manager')
+  scope :non_admins, where(:role => ['manager', 'employee'])
 
   def totalleaves
     @setup = Setup.find(:all, :conditions =>['year = ?', "#{Time.now.year}"])
@@ -27,7 +32,6 @@ class User < ActiveRecord::Base
     end
   end
 
- 
 end
 
 

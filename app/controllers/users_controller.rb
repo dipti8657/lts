@@ -39,7 +39,7 @@ class UsersController < ApplicationController
   end
 
   def user_management
-    @users = User.all
+    @users = User.non_admins
     #@users = User.find(:all, :conditions => ['id = ?' , "#{current_user.manager_id}%"])
     respond_to do |format|
       format.html

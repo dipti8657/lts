@@ -3,78 +3,122 @@
 <% end %>
 
 <h2>Employee's DashBoard:-</h2>
+<%= label_tag 'Year' %>
+<%= label_tag Time.now.year %>
+<%= link_to 'Change Year', change_year_leave_path(current_user.id) %>
+
 <table>
-  <caption>Table for Pending Leaves</caption>
+  <caption>Pending Leaves of <%= current_user.email %></caption>
   <tr>
     <th>Applied_on</th>
     <th>No_of_Days</th>
     <th>Start_date</th>
     <th>End_date</th>
     <th>Current_status</th>
-    <% if current_user.role == 'manager'%>
+    <!-- <% if current_user.role == 'manager'%>
       <th>Employee</th>
       <th>Action</th>
-    <% end %>
+    <% end %>-->
   </tr>
 
-<!--
-%table(border="5" cellspacing="1" cellpadding="4" bordercolor="black" border-style="solid")
-  %tr#heading.bold.italics{:background => @leave.id % 2 == 0 ? 'grey' : 'white'}(height = "10px")
-    %th(align="center" valign="middle") Applied_on
-    %th(align="center" valign="middle") No_of_Days
-    - if current_user.role == "Manager"
-      %th Employee%table(border="5" cellspacing="1" cellpadding="4" bordercolor="black" border-style="solid")
-  %tr#heading.bold.italics
-    %th(align="center" valign="middle") Applied_on
-    %th(align="center" valign="middle") No_of_Days
-    - if current_user.role == "Manager"
-      %th Employee
-      %th Action
-  - @leaves.each do |leave|
-    - if leave.current_status == "Pending"
-      #whatever
-
-      <div id="whatever"></div>
-
-      %th Action
-  - @leaves.each do |leave|
-    - if leave.current_status == "Pending"
-      #whatever
-
-      <div id="whatever"></div>
--->
     <% @leaves.each do |leave| %>
-    <% if leave.current_status == "Pending" %>
+      <% if leave.current_status == "Pending" %>
+        <tr>
+          <td><%= leave.created_at.strftime("%d-%m-%Y") %></td>
+          <td><%= leave.no_of_days %></td>
+          <td><%= leave.start_date.strftime("%d-%m-%Y") %></td>
+          <td><%= leave.end_date.strftime("%d-%m-%Y") %></td>
+          <td><%= leave.current_status %></td>
+          <!--<% if current_user.role == 'manager'%>
+            <td><%= leave.user.email %></td>
+            <td>
+              <%= link_to 'Approve/Reject', approve_reject_leave_path(:id => leave.id, :user_id => leave.user.id)%>
+            </td>
+          <% end %> -->
+        </tr>
+      <% end %>
+    <% end %>
+</table>
+
+<%= render 'form' %>
+
+<% if current_user.role == 'manager' %>
+  <table>
+    <caption>Pending leaves of employees</caption>
+    <tr>
+      <th>Applied_on</th>
+      <th>No_of_Days</th>
+      <th>Start_date</th>
+      <th>End_date</th>
+      <th>Current_status</th>
+      <th>Employee</th>
+      <th>Action</th>
+    </tr>
+
+  <% @subordinates = User.where(:manager_id => current_user.id) %>
+  <% @subordinates.each do |subordinate| %>
+    <% @subordinates_leaves = subordinate.leaves %>
+    <% @subordinates_leaves.each do |leave| %>
+      <% if leave.current_status == "Pending" %>
       <tr>
         <td><%= leave.created_at.strftime("%d-%m-%Y") %></td>
         <td><%= leave.no_of_days %></td>
         <td><%= leave.start_date.strftime("%d-%m-%Y") %></td>
         <td><%= leave.end_date.strftime("%d-%m-%Y") %></td>
         <td><%= leave.current_status %></td>
-        <% if current_user.role == 'manager'%>
-          <td><%= leave.user.email %></td>
-          <td>
-            <%= link_to 'Approve/Reject', approve_reject_leave_path(:id => leave.id, :user_id => leave.user.id)%>
-          </td>
-        <% end %>
+        <td><%= leave.user.email %></td>
+        <td>
+          <%= link_to 'Approve/Reject', approve_reject_leave_path(:id => leave.id, :user_id => leave.user.id)%>
+        </td> 
       </tr>
+    <% end %>
     <% end %>
   <% end %>
 </table>
-
-<%= render 'form' %>
+<br />
+<hr />
+<br />
+<table>
+  <caption>Approved Leaves of employees</caption>
+  <tr>
+    <th>Applied_on</th>
+    <th>No_of_Days</th>
+    <th>Start_date</th>
+    <th>End_date</th>
+    <th>Approved_on</th>
+    <th>Email</th>
+   </tr>
+   
+   <% @subordinates = User.where(:manager_id => current_user.id) %>
+   <% @subordinates.each do |subordinate| %>
+      <% @subordinates_leaves = subordinate.leaves %>
+      <% @subordinates_leaves.each do |leave| %>
+      <% if leave.current_status == "Approved" %>
+        <tr>
+          <td><%= leave.created_at.strftime("%d-%m-%Y") %></td>
+          <td><%= leave.no_of_days %></td>
+          <td><%= leave.start_date.strftime("%d-%m-%Y") %></td>
+          <td><%= leave.end_date.strftime("%d-%m-%Y") %></td>
+          <td><%= leave.updated_at.strftime("%d-%m-%Y") %></td>
+          <td><%= leave.user.email %></td>
+      </tr>
+      <% end %>
+    <% end %>
+  <% end %>
+</table>
+<% end %>
 
 <!--
 = render '/setups/leave_balance'
 %h2 Employee's DashBoard
 %h4 Leaves Pending for Approval:-
-%table{:border => "5", "border-style" => "solid", :bordercolor => "black", :cellpadding => "4", :cellspacing => "1"}
+%table
   %tr
-    %th{:align => "center", :valign => "middle"} Applied_on
-    %th{:align => "center", :valign => "middle"} No_of_Days
-    %th{:align => "center", :valign => "middle"} Start_date
-    %th{:align => "center", :valign => "middle"} End_date
-    %th{:align => "center", valign => "middle"} Current_status
+    %th Applied_on
+    %th No_of_Days
+    %th Start_date
+    %th End_date
+    %th Current_status
     - if current_user.role == "manager"
       %th Employee
       %th Action
