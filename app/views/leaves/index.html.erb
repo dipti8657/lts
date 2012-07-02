@@ -3,10 +3,6 @@
 <% end %>
 
 <h2>Employee's DashBoard:-</h2>
-<%= label_tag 'Year' %>
-<%= label_tag Time.now.year %>
-<%= link_to 'Change Year', change_year_leave_path(current_user.id) %>
-
 <table>
   <caption>Pending Leaves of <%= current_user.email %></caption>
   <tr>
