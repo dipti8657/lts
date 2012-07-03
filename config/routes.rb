@@ -1,7 +1,8 @@
 CuberootLts::Application.routes.draw do
   get "holidays/index"
 
-  devise_for :users
+  devise_for :users, :controllers => {:sessions => "sessions"}
+
 
   resources :leaves do
     member do

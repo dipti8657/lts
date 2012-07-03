@@ -88,7 +88,8 @@ class LeavesController < ApplicationController
        # subordinate.leaves
       #end
     else
-      @leaves = Leave.find(:all, :conditions =>['user_id =?', current_user.id])
+      #@leaves = Leave.find(:all, :conditions =>['user_id =?', current_user.id])
+      @leaves = Leave.find(:all, :conditions => ['user_id = ? and year(start_date) = ?', current_user.id, session[:current_year]])
     end
     @leaves_taken = Leave.where(:current_status => "Approved").where(:user_id => "#{current_user.id}%").sum(:no_of_days)
     @setups = Setup.find(:all, :conditions => ['year = ?', "#{Time.now.year}%"])
@@ -120,8 +121,8 @@ class LeavesController < ApplicationController
 
   def set_year
     if params[:commit] = "set"
-      @leave = Leave.find(:all, :conditions => ['user_id = ? and session[:current_year] = ?', current_user.id, params[:date][:year]])
-      redirect_to leaves_path(@leave)
+      session[:current_year] = params[:date][:year]
+      redirect_to leaves_url
     end
     #session[:current_year] = params[:date][:year]
     #redirect_to leaves_url
