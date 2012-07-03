@@ -2,7 +2,6 @@ class Leave < ActiveRecord::Base
   belongs_to :user
   before_save :no_of_days_for_leave
   validate :startdate_cannot_be_greater_than_enddate, :on => :create
-  validates :start_date, :date => { :after => Time.now }
 
   validates_presence_of :reason, :on => :create, :message => "must not be blank"
 

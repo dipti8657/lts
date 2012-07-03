@@ -20,15 +20,12 @@ class UsersController < ApplicationController
       @user.role = params[:role]
     end
 
-    #respond_to do |format|
     if @user.update_attributes(params[:user])
       redirect_to @user, :notice => 'Employees info has changed'
     else
       Rails.logger.info(@user.errors.messages.inspect)
       render :edit
     end
-    #end
-    #@setup = Setup.find(:all, :conditions => ['year = ?', "#{Time.now.year}"])
   end
 
   def show
@@ -44,7 +41,14 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html
     end
+  end
 
+  def destroy
+    @user = User.find_by_id(params[:id])
+    @user.destroy
+    flash[:notice] = 'User is successfully deleted.'
+    #redirect_to :action => 'user_management', :id=>session[:user_id]
+    redirect_to user_management_user_path(current_user.id)
   end
 
 end

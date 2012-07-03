@@ -6,7 +6,7 @@ CuberootLts::Application.routes.draw do
 
   resources :leaves do
     member do
-      get 'approve_reject', 'change_year'
+      get 'approve_reject', 'change_year', 'reject_approved_leaves'
     end
     collection do
       post 'set_year'

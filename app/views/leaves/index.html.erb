@@ -36,6 +36,44 @@
     <% end %>
 </table>
 
+<br />
+<hr />
+<br />
+
+<table>
+  <caption>Rejected Leaves of <%= current_user.email %></caption>
+  <tr>
+    <th>Applied_on</th>
+    <th>No_of_Days</th>
+    <th>Start_date</th>
+    <th>End_date</th>
+    <th>Current_status</th>
+    <!-- <% if current_user.role == 'manager'%>
+      <th>Employee</th>
+      <th>Action</th>
+    <% end %>-->
+  </tr>
+
+    <% @leaves.each do |leave| %>
+      <% if leave.current_status == "Rejected" %>
+        <tr>
+          <td><%= leave.created_at.strftime("%d-%m-%Y") %></td>
+          <td><%= leave.no_of_days %></td>
+          <td><%= leave.start_date.strftime("%d-%m-%Y") %></td>
+          <td><%= leave.end_date.strftime("%d-%m-%Y") %></td>
+          <td><%= leave.current_status %></td>
+          <!--<% if current_user.role == 'manager'%>
+            <td><%= leave.user.email %></td>
+            <td>
+              <%= link_to 'Approve/Reject', approve_reject_leave_path(:id => leave.id, :user_id => leave.user.id)%>
+            </td>
+          <% end %> -->
+        </tr>
+      <% end %>
+    <% end %>
+</table>
+
+
 <%= render 'form' %>
 
 <% if current_user.role == 'manager' %>
@@ -71,9 +109,11 @@
     <% end %>
   <% end %>
 </table>
+
 <br />
 <hr />
 <br />
+
 <table>
   <caption>Approved Leaves of employees</caption>
   <tr>
@@ -83,6 +123,7 @@
     <th>End_date</th>
     <th>Approved_on</th>
     <th>Email</th>
+    <th></th>
    </tr>
    
    <% @subordinates = User.where(:manager_id => current_user.id) %>
@@ -97,11 +138,46 @@
           <td><%= leave.end_date.strftime("%d-%m-%Y") %></td>
           <td><%= leave.updated_at.strftime("%d-%m-%Y") %></td>
           <td><%= leave.user.email %></td>
-      </tr>
+          <td><%= button_to 'Reject (in case)', {:action => :update, :id => leave.id, :commit => "Reject (in case)"}, :method => :put %></td>
+        </tr>
       <% end %>
     <% end %>
   <% end %>
 </table>
+
+<br />
+<hr />
+<br />
+
+<table>
+  <caption>Rejected Leaves of employees</caption>
+  <tr>
+    <th>Applied_on</th>
+    <th>No_of_Days</th>
+    <th>Start_date</th>
+    <th>End_date</th>
+    <th>Approved_on</th>
+    <th>Email</th>
+  </tr>
+   
+   <% @subordinates = User.where(:manager_id => current_user.id) %>
+   <% @subordinates.each do |subordinate| %>
+      <% @subordinates_leaves = subordinate.leaves %>
+      <% @subordinates_leaves.each do |leave| %>
+      <% if leave.current_status == "Rejected" %>
+        <tr>
+          <td><%= leave.created_at.strftime("%d-%m-%Y") %></td>
+          <td><%= leave.no_of_days %></td>
+          <td><%= leave.start_date.strftime("%d-%m-%Y") %></td>
+          <td><%= leave.end_date.strftime("%d-%m-%Y") %></td>
+          <td><%= leave.updated_at.strftime("%d-%m-%Y") %></td>
+          <td><%= leave.user.email %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  <% end %>
+</table>
+
 <% end %>
 
 <!--
