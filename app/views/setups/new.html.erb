@@ -1,4 +1,8 @@
 <%= form_for @setup, :url => { :action => "create" }   do |f| %>
+  <% @setup.errors.full_messages.each do |msg| %>
+    <p><%= msg %></p>
+  <% end %>
+
   <div class="field">
     <%= f.label :total_leaves %>
     <%= f.text_field :total_leaves %>

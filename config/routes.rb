@@ -7,6 +7,9 @@ CuberootLts::Application.routes.draw do
     member do
       get 'approve_reject', 'change_year'
     end
+    collection do
+      post 'set_year'
+    end
   end
 
 

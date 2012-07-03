@@ -4,7 +4,8 @@
   <% @holiday.errors.full_messages.each do |msg| %>
     <p><%= msg %></p>
   <% end %>
-   <div class="field">
+  
+  <div class="field">
     <%= f.label :Date %><br />
     <%= f.date_select :date %>
   </div>

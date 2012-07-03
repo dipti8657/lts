@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120628044020) do
+ActiveRecord::Schema.define(:version => 20120702084727) do
 
   create_table "holidays", :force => true do |t|
     t.date     "date"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(:version => 20120628044020) do
     t.datetime "approved_on"
     t.string   "rejection_reason"
     t.integer  "approved_by"
+    t.date     "leaves_by_year"
   end
 
   add_index "leaves", ["user_id"], :name => "index_leaves_on_user_id"

@@ -1,6 +1,10 @@
 <h2>Edit Employee's Information</h2>
 
 <%= form_for @user, :url => { :action => "update" } do |f| %>
+  <% @user.errors.full_messages.each do |msg| %>
+    <p><%= msg %></p>
+  <% end %>
+
    <div class="field">
     <%= f.label :email %><br />
     <%= f.text_field :email %>
@@ -8,7 +12,7 @@
 
   <div class="field">
     <%= f.label :manager_id %><br />
-    <%= f.select("manager_id", User.managers.collect {|p| [p.email, p.id] }, { :include_blank => true }) %>
+    <%= f.select("manager_id", User.managers.collect {|p| [p.email, p.id] }) %>
   </div><br />
 
   <div class="field">

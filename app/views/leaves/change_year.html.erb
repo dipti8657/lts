@@ -1,14 +1,7 @@
-<%= form_tag @leaves do |f| %>
+<%= form_tag '/leaves/set_year'  do -%>
 
-  <div class="field">
-    <%= f.label :year %>
-    <%= f.date_select :change_year, :order => [:year] %>
-  </div>
+  <%= label_tag :leaves_by_year %>
+  <%= select_year(Date.today) %>
+  <%= submit_tag "set" %>
 
-  <div class=actions>
-    <%= f.submit "set"%>
-  </div>
-
-<% end %>
-
-  
+<% end -%>

@@ -1,5 +1,8 @@
 <h4>Apply For Leave:-</h4>
 <%= form_for @leave, :url => { :action => "create" } do |f| %>
+  <% @leave.errors.full_messages.each do |msg| %>
+    <p><%= msg %></p>
+  <% end %>
 
   <div class="field-sDate">
     <%= f.label :start_date %><br />

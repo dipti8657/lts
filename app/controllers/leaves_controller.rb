@@ -1,5 +1,10 @@
 class LeavesController < ApplicationController
   def create
+    if params[:commit] == "set"
+      @leave = Leave.find(:all, :conditions => ['user_id = ?', current_user.id])
+      redirect_to leaves_path
+    end
+
     @leave = current_user.leaves.build(params[:leave])
     @leave.current_status = "Pending"
 
@@ -26,6 +31,9 @@ class LeavesController < ApplicationController
 
   def update
     @leave = Leave.find( params[:id])
+    if params[:commit] == "set"
+      @leave = Leave.find(:all, :conditions => ['user_id = ?', current_user.id])
+    end
 
     if params[:commit] == "Approve"
         @leave.current_status = "Approved"
@@ -86,7 +94,7 @@ class LeavesController < ApplicationController
     @setups = Setup.find(:all, :conditions => ['year = ?', "#{Time.now.year}%"])
     #@setups = Setup.select("total_leaves").where(:year => "#{Time.now.year}%")
     @users = User.find(:all, :conditions => ['id = ?' , "#{current_user.manager_id}%"])
-  end
+   end
 
   def show
     @leave = Leave.find(params[:id])
@@ -105,7 +113,17 @@ class LeavesController < ApplicationController
   end
 
   def change_year
-   
+    #@change_by_year = params[:change_by_year]
+    #@leaves = Leave.find(:all, :conditions => ['user_id = ?', current_user.id])
+    #@leaves= Leave.all
+  end
 
+  def set_year
+    if params[:commit] = "set"
+      @leave = Leave.find(:all, :conditions => ['user_id = ? and session[:current_year] = ?', current_user.id, params[:date][:year]])
+      redirect_to leaves_path(@leave)
+    end
+    #session[:current_year] = params[:date][:year]
+    #redirect_to leaves_url
   end
 end
