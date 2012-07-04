@@ -1,0 +1,6 @@
+= form_tag '/leaves/set_year' do 
+  = label_tag :leaves_by_year 
+  = select_year(Date.today)
+  = submit_tag "set" 
+
+

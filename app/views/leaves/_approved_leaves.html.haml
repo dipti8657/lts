@@ -1,0 +1,40 @@
+%br/
+%hr/
+%br/
+%table
+  %caption
+    Approved Leaves of #{current_user.email}
+  %tr
+    %th Applied_on
+    %th No_of_days
+    %th Start_date
+    %th End_Date
+    %th Approved_on
+    %th Approved_by
+   
+  - @leaves.each do |leave|
+    - if leave.current_status == "Approved"
+      %tr
+        %td= leave.created_at.strftime("%d-%m-%Y")
+        %td= leave.no_of_days
+        %td= leave.start_date.strftime("%d-%m-%Y")
+        %td= leave.end_date.strftime("%d-%m-%Y")
+        %td= leave.updated_at.strftime("%d-%m-%Y")
+        %td
+          - @users.each do |user|
+            = leave.user.manager.email
+
+%br/
+%hr/
+%br/
+= link_to "Apply for Leave", new_leave_path, :class => 'btn'
+%br/
+%br/
+%p
+  = link_to "Holidays List", holidays_index_path
+
+
+
+
+
+

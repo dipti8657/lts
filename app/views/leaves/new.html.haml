@@ -1,0 +1,24 @@
+%h4 Apply For Leave:-
+= form_for @leave, :url => { :action => "create" } do |f|
+  - @leave.errors.full_messages.each do |msg|
+    %p= msg
+  .field-sDate
+    = f.label :start_date
+    %br/
+    = f.date_select :start_date, :order => [:month, :day, :year]
+  %hr/
+  .field-eDate
+    = f.label :end_date
+    %br/
+    = f.date_select :end_date, :order => [:month, :day, :year]
+  .field-reason
+    = f.label :reason
+    %br/
+    = f.text_area :reason
+  %hr/
+  .actions
+    = f.submit
+
+%hr/
+
+=link_to 'Back', leaves_path

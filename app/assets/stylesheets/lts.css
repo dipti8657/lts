@@ -18,16 +18,13 @@ h4 {
 
 .field-sDate {
   margin:auto;
-  background-color: blanchedalmond;
   font-size: 500%;
 }
 
 .field-eDate{
-  background-color: blanchedalmond;
 }
 
 .field-reason{
-  background-color: blanchedalmond;
 }
 
 .actions{
@@ -64,3 +61,17 @@ caption{
   font-weight: bolder;
   font-size: 150%;
 }
+
+a:link,a:visited
+{
+font-weight:bold;
+text-align:center;
+padding:4px;
+text-decoration:none;
+}
+
+.holidaylist{
+  text-align: right;
+}
+
+

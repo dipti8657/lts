@@ -31,6 +31,7 @@
             <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
             <% if current_user.role == 'manager' or current_user.role == 'employee' %>
               <%= label_tag 'Year' %>
+              <%= session[:current_year] %>
               <%= link_to 'Change Year', change_year_leave_path(current_user.id) %>
             <% end %>
           <% else %>

@@ -1,0 +1,52 @@
+%h2 Managers Dashboard - Approve/Reject leave
+%h3 Action
+Employee Name:- #{@leave.user.email}
+%br/
+No_of_days:- #{@leave.no_of_days}
+%br/
+Start_date:- #{@leave.start_date}
+%br/
+End_date:- #{@leave.end_date}
+%br/
+
+%h2 Leaves_History
+%table
+%tr
+    %th Employee_id
+    %th Applied_on
+    %th No_of_Days
+    %th Start_date
+    %th End_date
+    %th Approved_on
+    %th Approved_by
+  - @leaves.each do |leave|
+    %tr
+      %td= leave.user_id
+      %td= leave.no_of_days
+      %td= leave.start_date
+      %td= leave.end_date
+      %td= leave.updated_at
+      %td= current_user.email
+%br/
+  = form_for @leave, :url => { action => "update" } do |f|
+    .actions
+      = f.submit "Approve", :user_id => @leave
+    .actions
+      = f.submit "Reject"
+    .field
+      = f.label :rejection_reason
+      = f.text_field :rejection_reason
+%br/
+= link_to 'Back', leaves_path
+
+
+
+
+
+
+
+
+
+
+
+

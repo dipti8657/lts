@@ -1,11 +1,14 @@
 class HolidaysController < ApplicationController
   def index
-    @holidays = Holiday.all
+    @holidays_by_year = Holiday.find(:all, :conditions => ['year(date) = ?',  Time.now.year])
+    if params[:commit] == "set"
+      @holidays_by_year = Holiday.find(:all, :conditions => ['year(date) = ?', params[:date][:year]])
+    end
   end
 
   def create
-   # @holiday = current_user.holidays.build(params[:holiday])
     @holiday = Holiday.new(params[:holiday])
+
     respond_to do |format|
       if @holiday.save
         format.html { redirect_to holidays_index_path(@holiday), notice: 'Holiday is Submitted' }

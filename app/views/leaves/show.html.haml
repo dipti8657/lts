@@ -1,0 +1,25 @@
+%p#notice
+= notice
+%p
+  %b Applied_On
+  =l @leave.created_at
+%p
+  %b start_date
+  =l @leave.start_date
+%p
+  %b end_date
+  = @leave.end_date
+%p
+  %b no_of_days
+  = @leave.no_of_days
+%p
+  %b current_status
+  = @leave.current_status
+%p
+  = link_to 'Back', leaves_path
+
+
+
+
+
+

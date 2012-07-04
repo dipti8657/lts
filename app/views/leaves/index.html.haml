@@ -1,0 +1,140 @@
+= content_for :sidebar do
+  = render '/setups/leave_balance'
+%h2 Employee's DashBoard
+%table
+  %caption
+    Pending Leaves of #{current_user.email}
+  %tr
+    %th Applied_on
+    %th No_of_Days
+    %th Start_date
+    %th End_date
+    %th Current_status
+    
+  - @leaves.each do |leave|
+    - if leave.current_status == "Pending"
+      %tr
+        %td= leave.created_at.strftime("%d-%m-%Y")
+        %td= leave.no_of_days
+        %td= leave.start_date.strftime("%d-%m-%Y")
+        %td= leave.end_date.strftime("%d-%m-%Y")
+        %td= leave.current_status
+
+%br/
+%hr/
+%br/
+%table
+  %caption
+    Rejected Leaves of #{current_user.email}
+  %tr
+    %th Applied_on
+    %th No_of_Days
+    %th Start_date
+    %th End_date
+    %th Current_status
+  - @leaves.each do |leave|
+    - if leave.current_status == "Rejected"
+      %tr
+        %td= leave.created_at.strftime("%d-%m-%Y")
+        %td= leave.no_of_days
+        %td= leave.start_date.strftime("%d-%m-%Y")
+        %td= leave.end_date.strftime("%d-%m-%Y")
+        %td= leave.current_status
+
+= render 'approved_leaves'
+
+- if current_user.role == 'manager'
+  %table
+    %caption
+      Pending Leaves of employees
+    %tr
+      %th Applied_on
+      %th No_of_Days
+      %th Start_date
+      %th End_date
+      %th Current_status
+      %th Employee
+      %th Action
+
+    - @subordinates = User.where(:manager_id => current_user.id)
+    - @subordinates.each do |subordinate|
+      - @subordinates_leaves = subordinate.leaves
+      - @subordinates_leaves.each do |leave|
+        - if leave.current_status == "Pending"
+          %tr
+            %td= leave.created_at.strftime("%d-%m-%Y")
+            %td= leave.no_of_days
+            %td= leave.start_date.strftime("%d-%m-%Y")
+            %td= leave.end_date.strftime("%d-%m-%Y")
+            %td= leave.current_status
+            %td= leave.user.email
+            %td
+              = link_to 'Approve/Reject', approve_reject_leave_path(:id => leave.id, :user_id => leave.user.id)
+
+%br/
+%table
+  %caption
+    Approved Leaves of employees
+  %tr
+    %th Applied_on
+    %th No_of_Days
+    %th Start_date
+    %th End_date
+    %th Approved_on
+    %th Email
+    %th 
+
+  - @subordinates = User.where(:manager_id => current_user.id)
+  - @subordinates.each do |subordinate|
+    - @subordinates_leaves = subordinate.leaves
+    - @subordinates_leaves.each do |leave|
+      - if leave.current_status == "Approved"
+        %tr
+          %td= leave.created_at.strftime("%d-%m-%Y")
+          %td= leave.no_of_days
+          %td= leave.start_date.strftime("%d-%m-%Y")
+          %td= leave.end_date.strftime("%d-%m-%Y")
+          %td= leave.updated_at.strftime("%d-%m-%Y")
+          %td= leave.user.email
+          %td= button_to 'Reject (in case)', {:action => :update, :id => leave.id, :commit => "Reject (in case)"}, :method => :put
+
+%br/
+%hr/
+%br/
+%table
+  %caption
+    Rejected Leaves of employees
+  %tr
+    %th Applied_on
+    %th No_of_Days
+    %th Start_date
+    %th End_date
+    %th Approved_on
+    %th Email
+
+  - @subordinates = User.where(:manager_id => current_user.id)
+  - @subordinates.each do |subordinate|
+    - @subordinates_leaves = subordinate.leaves
+    - @subordinates_leaves.each do |leave|
+      - if leave.current_status == "Rejected"
+        %tr
+          %td= leave.created_at.strftime("%d-%m-%Y")
+          %td= leave.no_of_days
+          %td= leave.start_date.strftime("%d-%m-%Y")
+          %td= leave.end_date.strftime("%d-%m-%Y")
+          %td= leave.updated_at.strftime("%d-%m-%Y")
+          %td= leave.user.email
+
+
+
+
+
+
+
+
+
+
+
+
+
+

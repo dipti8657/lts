@@ -1,0 +1,28 @@
+%h2 Holidays List
+%table
+  %tr
+    %th Date
+    %th Day
+    %th Event
+
+  - @holidays_by_year.each do |holiday|
+    %tr
+      %td= holiday.date
+      %td= holiday.event
+      - if current_user.role == 'admin'
+        %td= link_to 'Edit', edit_holiday_path(holiday)
+        %td= link_to 'Destroy', holiday, confirm: 'Are you sure?', method: :delete
+
+=form_tag '/holidays', {:method => :get} do
+  = label_tag :Holidays_by_year
+  = select_year(Date.today)
+  = submit_tag "set"
+
+- if current_user.role == 'admin'
+  = link_to 'Back', user_management_user_path(current_user.id)
+  %br/
+  %br/
+  = link_to 'Insert Holiday', new_holiday_path
+- else
+  = link_to 'Back', leaves_path
+

@@ -121,13 +121,4 @@ class LeavesController < ApplicationController
     end
   end
 
-  def reject_approved_leaves
-    @leave = Leave.find(params[:id])
-    if params[:commit] == "Reject(in case)"
-      @leave.current_status = "Rejected"
-      redirect_to leave_path(@leave)
-    end
-
-  end
-
-end
+ end
