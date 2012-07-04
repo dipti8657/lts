@@ -29,8 +29,10 @@
           <% if user_signed_in? %>
             Signed in as <%= current_user.email %>. Not you?
             <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-            <%= label_tag 'Year' %>
-            <%= link_to 'Change Year', change_year_leave_path(current_user.id) %>
+            <% if current_user.role == 'manager' or current_user.role == 'employee' %>
+              <%= label_tag 'Year' %>
+              <%= link_to 'Change Year', change_year_leave_path(current_user.id) %>
+            <% end %>
           <% else %>
             <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
           <% end %>
