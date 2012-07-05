@@ -1,0 +1,27 @@
+%h2 Edit Employee's Information
+= form_for @user, :url => { :action => "update" } do |f|
+  - @user.errors.full_messages.each do |msg|
+    %p= msg
+  .field
+    = f.label :email
+    %br/
+    = f.text_field :email
+  %br/
+  .field
+    = f.label :manager_id
+    %br/
+    = f.select("manager_id", User.managers.collect {|p| [p.email, p.id] })
+  %br/
+  .field
+    = f.radio_button :role, 'employee'
+    Employee
+    \#{f.radio_button :role, 'manager'}Manager
+  .field
+    = f.label :Joining_Date
+    = f.date_select :joining_date
+  .action
+    = f.submit "Change"
+    %br/
+  %br/
+%br/
+= link_to 'Back', user_management_user_path(current_user.id)

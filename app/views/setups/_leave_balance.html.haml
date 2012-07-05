@@ -1,0 +1,11 @@
+%h4
+  Total Leaves:
+  - @setups.each do |setup|
+    = setup.total_leaves
+%h4
+  Leaves Taken:
+  \#{@leaves_taken}
+%h4
+  Leaves Balance:
+  - @setups.each do |setup|
+    = setup.total_leaves - @leaves_taken

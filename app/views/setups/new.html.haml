@@ -1,0 +1,13 @@
+= form_for @setup, :url => { :action => "create" }   do |f|
+  - @setup.errors.full_messages.each do |msg|
+    %p= msg
+  .field
+    = f.label :total_leaves
+    = f.text_field :total_leaves
+  .field
+    = f.label :year
+    = f.text_field :year
+  .action
+    = f.submit "Save"
+%p
+  = link_to 'Back', setups_path(current_user.id)

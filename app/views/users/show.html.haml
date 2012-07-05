@@ -1,0 +1,10 @@
+%p
+  %b Manager
+  = @user.manager.email
+%p
+  %b Joining Date
+  = @user.joining_date
+%p
+  %b Total Leaves
+  = @user.total_leaves
+= link_to 'Back', user_management_user_path(current_user.id)

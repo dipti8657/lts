@@ -1,0 +1,15 @@
+%h3 Setup
+%table
+  %tr
+    %th Total Leaves
+    %th Year
+  - @setups.each do |setup|
+    %tr
+      %td= setup.total_leaves
+      %td= setup.year
+      %td= link_to 'Edit', edit_setup_path(setup)
+      %td= link_to 'Destroy', setup, confirm: 'Are you sure?', method: :delete
+%p
+  = link_to 'New Entry', new_setup_path
+%p
+  = link_to 'Back', user_management_user_path(current_user.id)

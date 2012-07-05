@@ -1,0 +1,16 @@
+%h2 Welcome Admin
+%br/
+%table
+  %caption User Management
+  %tr
+    %th Employee
+    %th Reporting Manager
+  - @users.each do |user|
+    %tr
+      %td= user.email
+      %td= user.manager.email
+      %td= link_to 'Edit', edit_user_path(user.id)
+      %td= link_to 'Destroy', user, confirm: 'Are you sure?', method: :delete
+= link_to "Setup for Leaves", setups_path
+%br/
+= link_to "Manage Holiday List", holidays_index_path
