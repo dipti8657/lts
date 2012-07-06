@@ -1,4 +1,6 @@
 class LeavesController < ApplicationController
+
+  # creates new leave and saves it.
   def create
     @leave = current_user.leaves.build(params[:leave])
     @leave.current_status = "Pending"
@@ -13,6 +15,7 @@ class LeavesController < ApplicationController
     end
   end
 
+  # new leave entry
   def new
     @leave = Leave.new
     respond_to do |format|
@@ -20,10 +23,12 @@ class LeavesController < ApplicationController
     end
   end
 
+  # edits leave details
   def edit
     @leave = Leave.find(params[:id])
   end
 
+  # updates leave details and saves updates leave details
   def update
     @leave = Leave.find( params[:id])
 
@@ -66,6 +71,7 @@ class LeavesController < ApplicationController
     end
   end
 
+  # delete applied leave
   def destroy
     @leave = Leave.find_by_id(params[:id])
     @leave.destroy
@@ -73,6 +79,7 @@ class LeavesController < ApplicationController
     redirect_to :action => 'index', :id=>session[:user_id]
   end
 
+  # returns all leaves associated with user
   def index
     if current_user.role == 'manager'
       @leaves = Leave.find(:all, :conditions => ['user_id = ? and year(start_date) = ?', current_user.id, session[:current_year]])
@@ -95,6 +102,7 @@ class LeavesController < ApplicationController
     @users = User.find(:all, :conditions => ['id = ?' , "#{current_user.manager_id}%"])
   end
 
+  # displays applied leave
   def show
     @leave = Leave.find(params[:id])
     respond_to do |format|
@@ -102,6 +110,7 @@ class LeavesController < ApplicationController
     end
   end
 
+  # manager can approve/reject leave of employees under him/her
   def approve_reject
     @leaves = Leave.find(:all, :conditions =>['user_id = ? and current_status = ?', params[:user_id].to_i, 'Approved'])
     @leave = Leave.find(params[:id])
@@ -114,6 +123,7 @@ class LeavesController < ApplicationController
   def change_year
   end
 
+  # returns leaves history as per year
   def set_year
     if params[:commit] = "set"
       session[:current_year] = params[:date][:year]

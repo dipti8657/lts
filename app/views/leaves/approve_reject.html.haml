@@ -11,7 +11,7 @@ End_date:- #{@leave.end_date}
 
 %h2 Leaves_History
 %table
-%tr
+  %tr
     %th Employee_id
     %th Applied_on
     %th No_of_Days
@@ -20,22 +20,24 @@ End_date:- #{@leave.end_date}
     %th Approved_on
     %th Approved_by
   - @leaves.each do |leave|
-    %tr
-      %td= leave.user_id
-      %td= leave.no_of_days
-      %td= leave.start_date
-      %td= leave.end_date
-      %td= leave.updated_at
-      %td= current_user.email
+  %tr
+    %td= leave.user_id
+    %td= leave.no_of_days
+    %td= leave.start_date
+    %td= leave.end_date
+    %td= leave.updated_at
+    %td= current_user.email
+
 %br/
-  = form_for @leave, :url => { action => "update" } do |f|
-    .actions
-      = f.submit "Approve", :user_id => @leave
-    .actions
-      = f.submit "Reject"
-    .field
-      = f.label :rejection_reason
-      = f.text_field :rejection_reason
+= form_for @leave, :url => { action => "update" } do |f|
+  .actions
+    = f.submit "Approve", :user_id => @leave
+  .actions
+    = f.submit "Reject"
+  .field
+    = f.label :rejection_reason
+    = f.text_field :rejection_reason
+
 %br/
 = link_to 'Back', leaves_path
 

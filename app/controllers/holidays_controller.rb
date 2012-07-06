@@ -1,4 +1,6 @@
 class HolidaysController < ApplicationController
+
+  # returns yearwise holiday list 
   def index
     @holidays_by_year = Holiday.find(:all, :conditions => ['year(date) = ?',  Time.now.year])
     if params[:commit] == "set"
@@ -6,6 +8,7 @@ class HolidaysController < ApplicationController
     end
   end
 
+  # create new holiday entry and saves it in appropriate yearwise holiday list
   def create
     @holiday = Holiday.new(params[:holiday])
 
@@ -19,6 +22,7 @@ class HolidaysController < ApplicationController
     end
   end
 
+  # create new holiday entry
   def new
     @holiday = Holiday.new
     respond_to do |format|
@@ -26,10 +30,12 @@ class HolidaysController < ApplicationController
     end
   end
 
+  # edit holiday date or holiday name
   def edit
     @holiday = Holiday.find(params[:id])
   end
 
+  # show holiday
   def show
     @holiday = Holiday.find(params[:id])
     respond_to do |format|
@@ -37,6 +43,7 @@ class HolidaysController < ApplicationController
     end
   end
 
+  # updates holiday date or holiday name and saves updated holiday
   def update
     @holiday = Holiday.find(params[:id])
 
@@ -49,6 +56,7 @@ class HolidaysController < ApplicationController
     end
   end
 
+  # delete holiday entry(in case)
   def destroy
     @holiday = Holiday.find_by_id(params[:id])
     @holiday.destroy

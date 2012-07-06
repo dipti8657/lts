@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  #returns all users list 
   def index
     @users = User.all
       respond_to do |format|
@@ -6,13 +7,14 @@ class UsersController < ApplicationController
     end
   end
 
+  # edit user details
   def edit
     @user= User.find(params[:id])
   end
 
+  # update user details and saves updated details
   def update
     @setup = Setup.find(:all, :conditions => ['year = ?', "#{Time.now.year}"])
-    #Rails.logger.info(@user.errors.messages.inspect)
     @user = User.find(params[:id])
     if params[:commit] == "Change"
       @user.manager_id = params[:manager_id]
@@ -28,6 +30,7 @@ class UsersController < ApplicationController
     end
   end
 
+  # shows user details
   def show
     @user = User.find(params[:id])
     respond_to do |format|
@@ -35,6 +38,7 @@ class UsersController < ApplicationController
     end
   end
 
+  # returns all users except admin
   def user_management
     @users = User.non_admins
     #@users = User.find(:all, :conditions => ['id = ?' , "#{current_user.manager_id}%"])
